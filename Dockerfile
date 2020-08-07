@@ -37,5 +37,14 @@ RUN pwsh -command Install-Module -name MSOnline -Force
 RUN pwsh -command Install-Module -Name AzureAD -Force
 RUN pwsh -command Install-Module -Name MicrosoftTeams -Force
 
+# Intall AzureCLI
+
+RUN apt-get update
+RUN apt-get install ca-certificates curl apt-transport-https lsb-release gnupg
+RUN apt-get update
+
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+
+
 # Start PowerShell
 CMD pwsh
