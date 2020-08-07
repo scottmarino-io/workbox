@@ -45,6 +45,8 @@ RUN apt-get update
 
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
+# Install AzureCLI AKS Kubectl / KubeLogin
+RUN az aks install-cli
 
 # Start PowerShell
 CMD pwsh
