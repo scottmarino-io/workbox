@@ -29,7 +29,6 @@ RUN apt-get update
 # Install PowerShell
 RUN apt-get install -y powershell
 
-CMD pwsh
 # Install PowerShell Modules
 
 RUN pwsh -command Install-Module -Name PSWindowsUpdate -Force
@@ -37,9 +36,6 @@ RUN pwsh -command Install-Module -Name Az -Force
 RUN pwsh -command Install-Module -name MSOnline -Force
 RUN pwsh -command Install-Module -Name AzureAD -Force
 RUN pwsh -command Install-Module -Name MicrosoftTeams -Force
-
-CMD pwsh
-
 
 # Start PowerShell
 CMD pwsh
