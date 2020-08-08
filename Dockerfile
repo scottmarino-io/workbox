@@ -4,13 +4,13 @@ FROM ubuntu:18.04
 RUN apt-get update
 
 # Install the software properties common
-RUN apt-get install -y software-properties-common
+RUN apt-get install -y software-properties-common wget
 
 # Update the list of products
 RUN apt-get update
 
 # Install wget
-RUN apt install -y wget
+# RUN apt install -y wget
 
 # Download the Microsoft repository GPG keys
 RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb
@@ -47,6 +47,13 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
 # Install AzureCLI AKS Kubectl / KubeLogin
 RUN az aks install-cli
+
+# Install node.js, NPM and net-tools packages
+RUN apt-get update
+RUN apt-get install -y nodejs npm net-tools iputils-ping ssh
+
+# Install Google Cloud API
+RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && apt-get update -y && apt-get install google-cloud-sdk -y
 
 # Start PowerShell
 CMD pwsh
